@@ -1,6 +1,7 @@
 <template>
-	<div class="uk-card uk-card-hover uk-card-small uk-border-rounded">
+	<div class="uk-card uk-card-secondary uk-card-small uk-border-rounded">
 		<close-button @click="$emit('remove', card)"></close-button>
+		<div v-if="card.label" class="uk-card-badge uk-label">{{ card.label }}</div>
 		<div class="uk-card-header">
 			<h3>{{ card.title }}</h3>
 		</div>
@@ -16,10 +17,6 @@ export default {
 		card: {
 			type: Object,
 			required: true,
-		},
-		color: {
-			type: String,
-			default: 'default',
 		},
 	},
 }

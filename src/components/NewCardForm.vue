@@ -9,8 +9,8 @@
 			<label class="uk-form-label" for="form-stacked-text">Text</label>
 			<text-input v-model="card.body" id="form-stacked-text" placeholder="Текст сообщения" />
 		</div>
-		<div class="uk-margin uk-flex uk-flex-right">
-			<secondary-button @click="createPost">Добавить</secondary-button>
+		<div class="uk-flex uk-flex-right">
+			<uk-button color="primary" roundBorder @click="createPost" :disabled="card.title.length <= 3 || card.body.length <= 10">Добавить</uk-button>
 		</div>
 	</form>
 </template>
@@ -25,6 +25,9 @@ export default {
 			},
 		}
 	},
+	props: {
+		modalID: String,
+	},
 	methods: {
 		createPost() {
 			this.card.id = Date.now()
@@ -33,6 +36,7 @@ export default {
 				title: '',
 				body: '',
 			}
+			UIkit.modal(`#${this.modalID}`).toggle()
 		},
 	},
 }
